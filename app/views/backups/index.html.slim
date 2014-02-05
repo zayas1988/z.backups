@@ -1,0 +1,11 @@
+- provide(:title, 'All backups')
+
+
+
+table class="table table-striped"
+ thead
+  tr
+   th path
+ = render @backups
+/= link_to "New backup", new_tftp_path,
+/                                class: "btn btn-large btn-primary"
