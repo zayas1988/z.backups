@@ -1,6 +1,6 @@
 class Account < ActiveRecord::Base
 # attr_accessible :login
- has_many :backups
+ has_many :backups, dependent: :destroy
  validates(:login, presence: true)
   def sync_accounts
     zusers = Array.new
@@ -17,6 +17,13 @@ class Account < ActiveRecord::Base
      zusers.push("#{user.chomp}")
     end
     zusers=zusers.uniq
-    
+    zusers.each do |user|
+      if accounts.find_by_login("#{user}").nil?
+        #p ip
+        #free.push(searchip)
+        @account = Account.new(:login => "#{user}")
+        @account.save
+      end
+    end
   end
 end
