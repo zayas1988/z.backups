@@ -1,15 +1,11 @@
 - provide(:title, 'All accounts')
 
-
-
 table class="table table-striped"
  thead
   tr
    th login
-/   th group
-/   th config name
-/   th del
- = render @accounts
-/= link_to "New tftp group", new_tftp_path,
-/                                class: "btn btn-large btn-primary"
-
+ tbody
+  - @accounts.each do |account|
+   tr
+    td = link_to "#{account.login}", edit_account_path(account)
+  

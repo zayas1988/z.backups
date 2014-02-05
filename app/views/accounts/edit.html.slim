@@ -1,0 +1,18 @@
+- provide(:title, 'All accounts')
+
+table class="table table-striped"
+ thead
+  tr
+   th date
+   th size
+   th restore
+   th make
+   
+ tbody
+  - @account.backups.each do |backup|
+   tr
+    td = backup.created_at
+    td = backup.size
+    td = link_to "restore", delete_backup_path(backup)
+    td = link_to "make", make_backup_path(backup)
+

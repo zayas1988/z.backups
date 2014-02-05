@@ -3,11 +3,12 @@ class AccountsController < ApplicationController
   def destroy
     Account.find(params[:id]).destroy
     flash[:success] = "Account destroyed."
-    redirect_to tftps_url
+    redirect_to accounts_url
   end
 
   def index
-    @accounts = @accounts = Account.paginate(page: params[:page])
+#    @accounts = @accounts = Account.paginate(page: params[:page])
+    @accounts = Account.all
   end
 
   def new
@@ -27,17 +28,20 @@ class AccountsController < ApplicationController
   def edit
    @account = Account.find(params[:id])
   end
+  def show
+    @accounts = Account.all
+  end
+  def showjobs
+   @account = Account.find(params[:id])
+  end
 
   def update
    @account = Account.find(params[:id])
     if @account.update_attributes(params[:account])
       flash[:success] = "Account updated"
-      redirect_to tftps_url
+      redirect_to accounts_url
     else
       render 'edit'
    end
-   def mail
-     @accounts = Account.all
-   end
   end
- 
+end 

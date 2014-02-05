@@ -1,6 +1,7 @@
-tr
-/  td = link_to "#{tftp.pathtoimage}#{tftp.image}", edit_tftp_path(tftp)
-/  td = tftp.group
+- @accounts.each do |account|
+  tr
+/  td = link_to acccount.login, edit_account_path(account)
+    td = account.login
 /  td = "#{tftp.pathtoconfig}#{tftp.configfilename}"
 /  td = link_to "del", tftp, method: :delete, data: { confirm: "You sure?" }
 
