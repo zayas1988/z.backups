@@ -2,6 +2,7 @@ App::Application.routes.draw do
 resources :backups
 resources :accounts
 root to: 'accounts#index'
+post '/backups/:id/restore' => 'backups#restore', as: :restore
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

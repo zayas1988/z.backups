@@ -14,7 +14,9 @@ class BackupsController < ApplicationController
   def new
    @backup = backup.new
   end
-
+  def restore
+    @backup = backup.find(params[:id])
+  end
   def create
     @backup = backup.new(params[:backup])
     if @backup.save

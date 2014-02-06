@@ -27,4 +27,15 @@ class Account < ActiveRecord::Base
       end
     end
   end
+  def makebackup
+    randid=rand(999999999)
+    @resultmkdir = %x(mkdir /backup/#{self.login})
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.login} getRestURL "//?fmt=tgz" > /backup/#{self.login}/#{randid}\.tar\.gz)
+    @resultdus = %(du /backup/#{self.login}/#{randid}.tar.gz | awk { print $1 })
+    @backup = self.backups.new(:path => "/backup/#{self.login}", :size => @resultdus.to_i)
+    @backup.save
+  end
+
+
+
 end

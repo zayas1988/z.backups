@@ -13,6 +13,7 @@ table class="table table-striped"
    tr
     td = backup.created_at
     td = backup.size
-    td = link_to "restore", delete_backup_path(backup)
-    td = link_to "make", make_backup_path(backup)
+    td = link_to "restore", restore_backup_path(@backup, :backup_id=> backup.id ), :method => :post
+    td = link_to "make"
+/, makebackup_account_path(backup)
 
