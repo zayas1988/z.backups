@@ -34,7 +34,12 @@ class AccountsController < ApplicationController
   def showjobs
    @account = Account.find(params[:id])
   end
-
+  def makebackup
+    account = Account.find(params[:id])
+    account.makebackup
+    flash[:success] = "#{account.login} backup created"
+    redirect_to root_url
+  end
   def update
    @account = Account.find(params[:id])
     if @account.update_attributes(params[:account])

@@ -10,13 +10,20 @@ class BackupsController < ApplicationController
 #    @backups = @backups = backup.paginate(page: params[:page])
     @backups = Backup.all
   end
-
+  
   def new
    @backup = backup.new
   end
   def restore
-    @backup = backup.find(params[:id])
+    backup = Backup.find(params[:id])
+    backup.restore
+    flash[:success] = "#{backup.account.login} at #{backup.created_at} restored"
+    redirect_to root_url
   end
+  def show
+    @backup = Backup.find(params[:id])
+  end
+
   def create
     @backup = backup.new(params[:backup])
     if @backup.save
