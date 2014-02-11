@@ -4,7 +4,10 @@ resources :accounts
 root to: 'accounts#index'
 resources :backups do
   member do
-    post :restore
+    post :restoremailbox
+    post :restorecontacts
+    post :restorecalendar
+    post :restoreall
   end
 end
 resources :accounts do

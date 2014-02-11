@@ -30,8 +30,10 @@ class Account < ActiveRecord::Base
   def makebackup
     randid=rand(999999999)
     @resultmkdir = %x(mkdir /backup/#{self.login})
-    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.login} getRestURL "//?fmt=tgz" > /backup/#{self.login}/#{randid}\.tar\.gz)
-    @resultdus = %x(du -b /backup/#{self.login}/#{randid}.tar.gz | awk '{ print $1 }')
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.login} getRestURL "//?fmt=tgz" > /backup/#{self.login}/#{randid}\.mailbox\.tar\.gz)
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.login} getRestURL "/Calendar/?fmt=tgz" > /backup/#{self.login}/#{randid}\.calendar\.tar\.gz)
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.login} getRestURL "/Contacts/?fmt=tgz" > /backup/#{self.login}/#{randid}\.contacts\.tar\.gz)
+    @resultdus = %x(du -b /backup/#{self.login}/#{randid}.mailbox.tar.gz | awk '{ print $1 }')
     @backup = self.backups.new(:path => "/backup/#{self.login}/#{randid}", :size => @resultdus.to_i)
     puts "#{@resultdus.to_i}"
     @backup.save

@@ -5,13 +5,19 @@ table class="table table-striped"
   tr
    th date
    th size
-   th restore
- /  th make
+   th restoremailbox
+   th restorecalendar
+   th restorecontacts
+   th restoreall
    
  tbody
   - @account.backups.each do |backup|
    tr
     td = backup.created_at
     td = backup.size
-    td = link_to "restore", restore_backup_path(backup.id), :method => :post
+    td = link_to "mailbox", restoremailbox_backup_path(backup.id), :method => :post
+    td = link_to "calendar", restorecalendar_backup_path(backup.id), :method => :post
+    td = link_to "contacts", restorecontacts_backup_path(backup.id), :method => :post
+    td = link_to "all", restoreall_backup_path(backup.id), :method => :post
+
 = link_to "make new backup", makebackup_account_path(@account.id), :method => :post, class: "btn btn-large btn-primary"

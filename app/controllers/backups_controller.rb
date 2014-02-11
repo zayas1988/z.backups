@@ -14,12 +14,35 @@ class BackupsController < ApplicationController
   def new
    @backup = backup.new
   end
-  def restore
+  def restoremailbox
     backup = Backup.find(params[:id])
-    backup.restore
-    flash[:success] = "#{backup.account.login} at #{backup.created_at} restored"
+    backup.restoremailbox
+    flash[:success] = "mailbox #{backup.account.login} at #{backup.created_at} restored"
     redirect_to root_url
   end
+  def restorecalendar
+    backup = Backup.find(params[:id])
+    backup.restorecalendar
+    flash[:success] = "calendar #{backup.account.login} at #{backup.created_at} restored"
+    redirect_to root_url
+  end
+  def restorecontacts
+    backup = Backup.find(params[:id])
+    backup.restorecontacts
+    flash[:success] = "contacts #{backup.account.login} at #{backup.created_at} restored"
+    redirect_to root_url
+  end
+  def restoreall
+    backup = Backup.find(params[:id])
+    backup.restoremailbox
+    backup.restorecalendar
+    backup.restorecontacts
+    flash[:success] = "full #{backup.account.login} at #{backup.created_at} restored"
+    redirect_to root_url
+  end
+
+  
+
   def show
     @backup = Backup.find(params[:id])
   end

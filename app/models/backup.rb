@@ -6,14 +6,13 @@ class Backup < ActiveRecord::Base
   def test
     @result = %x(touch /tmp/testfile#{self.id})
   end
-  def restore
-#    @resultmkdir = %x(mkdir /backup/#{self.login})
-    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.account.login} postRestURL "//?fmt=tgz&resolve=skip" #{self.path}\.tar\.gz)
-    puts "#{self.account.login}"
-    puts "#{self.path}"
-#    @resultdus = %x(du -b /backup/#{self.login}/#{randid}.tar.gz | awk '{ print $1 }')
-#    @backup = self.backups.new(:path => "/backup/#{self.login}", :size => @resultdus.to_i)
- #   puts "#{@resultdus.to_i}"
-  #  @backup.save
+  def restoremailbox
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.account.login} postRestURL "//?fmt=tgz&resolve=skip" #{self.path}\.mailbox\.tar\.gz)
+  end
+  def restorecalendar
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.account.login} postRestURL "/?fmt=tgz&resolve=skip" #{self.path}\.calendar\.tar\.gz)
+  end
+  def restorecontacts
+    @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.account.login} postRestURL "/?fmt=tgz&resolve=skip" #{self.path}\.contacts\.tar\.gz)
   end
 end
