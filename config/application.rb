@@ -14,6 +14,10 @@ module App
     config.encoding = "utf-8"
     config.assets.enabled = true
     config.assets.version = '1.0'
+    config.time_zone = 'Moscow'
+#    config.time_zone = "(GMT+04:00) Moscow"
+    config.active_record.default_timezone = 'Moscow'
+    config.active_record.default_timezone = :local
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'

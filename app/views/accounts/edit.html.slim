@@ -14,7 +14,7 @@ table class="table table-striped"
   - @account.backups.each do |backup|
    tr
     td = backup.created_at
-    td = backup.size
+    td = backup.size/1024/1024
     td = link_to "mailbox", restoremailbox_backup_path(backup.id), :method => :post
     td = link_to "calendar", restorecalendar_backup_path(backup.id), :method => :post
     td = link_to "contacts", restorecontacts_backup_path(backup.id), :method => :post

@@ -57,4 +57,5 @@ production:
   database: z.backups_production
   pool: 5
   username: z.backups
-  password:
+  password: 123123
+  host: db.polad.ru

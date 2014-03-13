@@ -13,6 +13,7 @@ gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 gem 'slim'
+gem 'unicorn'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
