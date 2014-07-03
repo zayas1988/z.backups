@@ -18,4 +18,8 @@ class Backup < ActiveRecord::Base
   def deletefiles
     @result = %x(rm #{self.path}\*)
   end
+  def deletebackup
+    @result = %x(rm #{self.path}\*)
+    self.destroy
+  end
 end
