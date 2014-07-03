@@ -8,6 +8,7 @@ resources :backups do
     post :restorecontacts
     post :restorecalendar
     post :restoreall
+    post :destroy
   end
 end
 resources :accounts do
