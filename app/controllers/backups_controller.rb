@@ -1,6 +1,7 @@
 class BackupsController < ApplicationController
 
   def destroy
+    Backup.find(params[:id]).delefiles
     Backup.find(params[:id]).destroy
     flash[:success] = "Backup destroyed."
     redirect_to backups_url
