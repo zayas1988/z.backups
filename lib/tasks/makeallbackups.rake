@@ -15,7 +15,7 @@ namespace :accounts do
   task(:deletelastbackups) do
     @accounts=Account.all
     @accounts.each do |account|
-      @account.backups.first.destroy  
+      account.backups.first.deletebackup if account.backups.first
     end
   end
 end
