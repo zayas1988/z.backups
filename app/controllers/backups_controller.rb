@@ -5,7 +5,7 @@ class BackupsController < ApplicationController
     backup.deletefiles
     backup.destroy
     flash[:success] = "Backup destroyed."
-    redirect_to backups_url
+    redirect_to root_url
   end
 
   def index

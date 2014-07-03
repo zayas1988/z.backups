@@ -5,7 +5,7 @@ table class="table table-striped"
   tr
    th login
  tbody
-  - @accounts.each do |account|
+  - @accounts.order(:login).each do |account|
    tr
     td = link_to "#{account.login}", edit_account_path(account)
   
