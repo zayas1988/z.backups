@@ -15,7 +15,7 @@ class Backup < ActiveRecord::Base
   def restorecontacts
     @result = %x(sudo -u zimbra /opt/zimbra/bin/zmmailbox -z -m #{self.account.login} postRestURL "/?fmt=tgz&resolve=skip" #{self.path}\.contacts\.tar\.gz)
   end
-  def deletelastbackup
+  def deletefiles
     @result = %x(rm #{self.path}\*)
   end
 end

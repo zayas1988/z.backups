@@ -20,6 +20,6 @@ table class="table table-striped"
     td = link_to "calendar", restorecalendar_backup_path(backup.id), :method => :post
     td = link_to "contacts", restorecontacts_backup_path(backup.id), :method => :post
     td = link_to "all", restoreall_backup_path(backup.id), :method => :post
-    td = link_to "delete", destroy_backup_path(backup.id), :method => :post
+    td = link_to "delete", delbackup_backup_path(backup.id), :method => :post
 
 = link_to "make new backup", makebackup_account_path(@account.id), :method => :post, class: "btn btn-large btn-primary"
